@@ -1,5 +1,6 @@
 # analyzing_memes
-Project Overview
+Project Overview:
+
 This codebase is designed to perform various tasks related to image processing and machine learning, including object detection, text detection and removal, and classification. The project utilizes several advanced libraries such as PyTorch, OpenCV, and Transformers, and is structured to work with Google Colab notebooks for easy access and execution.
 
 Directory Structure
@@ -34,8 +35,6 @@ The project makes use of several libraries, including:
 - pandas: For data manipulation and analysis.
 - transformers: For zero-shot classification.
 - mediapipe: For hand gesture recognition.
-
-Make sure to install the exact versions as specified in the codes to avoid compatibility issues.
 
 How to Run
 
