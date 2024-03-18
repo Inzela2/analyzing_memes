@@ -7,7 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1U5J0chnfiYIZ4wa1RKZ_9N_NpiD87Iwf
 """
 
-# Commented out IPython magic to ensure Python compatibility.
 !pip install torch torchvision torchaudio
 !pip install -Uq yolov5
 
@@ -38,16 +37,18 @@ model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 def process_image(image_path, model):
     try:
         img = Image.open(image_path)
-        results = model(img, size=640)
-        pred = results.pred[0]
-        detected_names = set()
+        results = model(img, size=640)  
+        pred = results.pred[0]  
+        detected_names = set()          
         for i in range(len(pred)):
-            class_id = int(pred[i, -1])
+            class_id = int(pred[i, -1])          
             if class_id < len(results.names):
-                detected_names.add(results.names[class_id])
-        text_detected = "text" in pytesseract.image_to_string(img)
+                detected_names.add(results.names[class_id])        
+        ocr_result = pytesseract.image_to_string(img)
+        text_detected = bool(ocr_result.strip())  
+     
         if text_detected:
-            detected_names.add('text')
+            detected_names.add('text')     
         return os.path.basename(image_path), detected_names
     except Exception as e:
         print(f"Error processing image {os.path.basename(image_path)}: {e}")
